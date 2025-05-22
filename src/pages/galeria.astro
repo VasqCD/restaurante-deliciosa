@@ -1,0 +1,262 @@
+---
+// src/pages/galeria.astro
+import Layout from '../layouts/Layout.astro';
+
+const galeria = [
+  {
+    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Interior del restaurante",
+    category: "ambiente"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Baleada especial",
+    category: "comida"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Chef preparando platillos",
+    category: "cocina"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Pollo a la plancha",
+    category: "comida"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Ambiente nocturno del restaurante",
+    category: "ambiente"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Tres leches casero",
+    category: "postres"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1546833999-b9f2b7aa6ca4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Carne asada con guarniciones",
+    category: "comida"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Horchata tradicional",
+    category: "bebidas"
+  }
+];
+
+const categorias = [
+  { id: 'todas', name: 'Todas', count: galeria.length },
+  { id: 'comida', name: 'Comida', count: galeria.filter(img => img.category === 'comida').length },
+  { id: 'ambiente', name: 'Ambiente', count: galeria.filter(img => img.category === 'ambiente').length },
+  { id: 'cocina', name: 'Cocina', count: galeria.filter(img => img.category === 'cocina').length },
+  { id: 'postres', name: 'Postres', count: galeria.filter(img => img.category === 'postres').length },
+  { id: 'bebidas', name: 'Bebidas', count: galeria.filter(img => img.category === 'bebidas').length }
+];
+---
+
+<Layout 
+  title="Galería - Restaurante La Deliciosa | Fotos de Nuestros Platos y Ambiente"
+  description="Descubre a través de imágenes la experiencia gastronómica de La Deliciosa. Fotos de nuestros platos tradicionales, ambiente acogedor y momentos especiales."
+  keywords="galería restaurante, fotos comida hondureña, ambiente restaurante, platos típicos, fotografías"
+>
+  <!-- Hero Section -->
+  <section class="relative py-16 bg-gradient-to-r from-amber-600 to-amber-800">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">
+        Nuestra Galería
+      </h1>
+      <p class="text-lg md:text-xl text-amber-100 max-w-2xl mx-auto">
+        Descubre a través de imágenes la experiencia gastronómica que te espera en La Deliciosa
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      {categorias.map(categoria => (
+        <button 
+          class="filter-btn px-6 py-3 rounded-lg font-medium transition-all duration-300 bg-white border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white"
+          data-filter={categoria.id}
+        >
+          {categoria.name} ({categoria.count})
+        </button>
+      ))}
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+      {galeria.map((imagen, index) => (
+        <div 
+          class={`gallery-item cursor-pointer group ${imagen.category}`}
+          data-category={imagen.category}
+          data-index={index}
+        >
+          <div class="relative overflow-hidden rounded-lg shadow-lg aspect-square">
+            <img 
+              src={imagen.src}
+              alt={imagen.alt}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+              <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="mt-4">
+            <h3 class="font-semibold text-gray-900">{imagen.alt}</h3>
+            <p class="text-sm text-amber-600 capitalize">{imagen.category}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Modal para ver imagen completa -->
+  <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+    <div class="relative max-w-4xl max-h-full">
+      <button 
+        id="closeModal" 
+        class="absolute top-4 right-4 text-white hover:text-amber-400 transition-colors z-10"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <img 
+        id="modalImage" 
+        src="" 
+        alt="" 
+        class="max-w-full max-h-full object-contain rounded-lg"
+      />
+      <div class="absolute bottom-4 left-4 text-white bg-black/50 px-4 py-2 rounded-lg">
+        <p id="modalCaption" class="font-medium"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl font-bold text-gray-900 mb-4">
+        ¿Te Gustó lo que Viste?
+      </h2>
+      <p class="text-lg text-gray-600 mb-8">
+        Ven y vive la experiencia completa en nuestro restaurante
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/reservas" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+          Reservar Mesa
+        </a>
+        <a href="/menu" class="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+          Ver Menú
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn') as NodeListOf<HTMLButtonElement>;
+    const galleryItems = document.querySelectorAll('.gallery-item') as NodeListOf<HTMLElement>;
+    const modal = document.getElementById('imageModal') as HTMLElement;
+    const modalImage = document.getElementById('modalImage') as HTMLImageElement;
+    const modalCaption = document.getElementById('modalCaption') as HTMLElement;
+    const closeModal = document.getElementById('closeModal') as HTMLButtonElement;
+
+    // Filter functionality
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function(this: HTMLButtonElement) {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => {
+          btn.classList.remove('bg-amber-600', 'text-white');
+          btn.classList.add('bg-white', 'text-amber-600');
+        });
+        
+        // Add active class to clicked button
+        this.classList.remove('bg-white', 'text-amber-600');
+        this.classList.add('bg-amber-600', 'text-white');
+        
+        const filter = this.dataset.filter;
+        
+        // Filter gallery items
+        galleryItems.forEach(item => {
+          if (filter === 'todas' || item.dataset.category === filter) {
+            item.style.display = 'block';
+            item.classList.add('animate-fade-in');
+          } else {
+            item.style.display = 'none';
+            item.classList.remove('animate-fade-in');
+          }
+        });
+      });
+    });
+
+    // Set first button as active
+    if (filterButtons.length > 0) {
+      filterButtons[0].classList.remove('bg-white', 'text-amber-600');
+      filterButtons[0].classList.add('bg-amber-600', 'text-white');
+    }
+
+    // Modal functionality
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function(this: HTMLElement) {
+        const img = this.querySelector('img') as HTMLImageElement;
+        const caption = this.querySelector('h3') as HTMLElement;
+        
+        if (img && caption) {
+          modalImage.src = img.src;
+          modalImage.alt = img.alt;
+          modalCaption.textContent = caption.textContent;
+          modal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    // Close modal
+    closeModal?.addEventListener('click', function() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close modal on background click
+    modal?.addEventListener('click', function(e: Event) {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e: KeyboardEvent) {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  });
+</script>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+</style>
