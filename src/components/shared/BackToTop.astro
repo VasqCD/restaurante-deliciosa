@@ -1,0 +1,58 @@
+---
+// src/components/shared/BackToTop.astro
+---
+
+<button 
+  id="backToTop"
+  class="fixed bottom-8 right-8 bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 invisible z-50 transform hover:scale-110"
+  aria-label="Volver arriba"
+>
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+  </svg>
+</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.getElementById('backToTop') as HTMLButtonElement;
+    
+    if (!backToTopButton) return;
+
+    // Mostrar/ocultar botón basado en scroll
+    const toggleBackToTop = () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.add('opacity-0', 'invisible');
+        backToTopButton.classList.remove('opacity-100', 'visible');
+      }
+    };
+
+    // Scroll suave hacia arriba
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
+
+    // Event listeners
+    window.addEventListener('scroll', toggleBackToTop);
+    backToTopButton.addEventListener('click', scrollToTop);
+
+    // Verificar estado inicial
+    toggleBackToTop();
+  });
+</script>
+
+<style>
+  #backToTop {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  #backToTop:hover {
+    transform: translateY(-2px) scale(1.1);
+  }
+</style>
