@@ -1,0 +1,39 @@
+---
+// src/components/ui/SectionHeader.astro
+export interface Props {
+  title: string;
+  subtitle?: string;
+  highlight?: string;
+  align?: 'left' | 'center' | 'right';
+  class?: string;
+}
+
+const { 
+  title, 
+  subtitle, 
+  highlight,
+  align = 'center',
+  class: className = ''
+} = Astro.props;
+
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right'
+};
+
+// Función para resaltar texto
+const getFormattedTitle = () => {
+  if (!highlight) return title;
+  return title.replace(highlight, `<span class="text-amber-600">${highlight}</span>`);
+};
+---
+
+<div class={`mb-12 ${alignClasses[align]} ${className}`}>
+  <h2 class="font-display text-4xl font-bold text-gray-900 mb-4" set:html={getFormattedTitle()} />
+  {subtitle && (
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+      {subtitle}
+    </p>
+  )}
+</div>

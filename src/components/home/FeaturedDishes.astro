@@ -1,0 +1,63 @@
+---
+// src/components/home/FeaturedDishes.astro
+import SectionHeader from '../ui/SectionHeader.astro';
+import Button from '../ui/Button.astro';
+
+const dishes = [
+  {
+    name: "Baleada Especial",
+    price: 95,
+    description: "Nuestra baleada tradicional con frijoles, queso, crema y aguacate, preparada con tortilla de harina casera.",
+    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    name: "Pollo a la Plancha",
+    price: 285,
+    description: "Pechuga de pollo marinada con hierbas frescas, acompañada de vegetales salteados y arroz con coco.",
+    image: "https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    name: "Carne Asada",
+    price: 350,
+    description: "Corte premium a la parrilla con chimol casero, tajadas de plátano y ensalada fresca.",
+    image: "https://images.unsplash.com/photo-1546833999-b9f2b7aa6ca4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+  }
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeader 
+      title="Nuestros Platos Estrella"
+      highlight="Platos Estrella"
+      subtitle="Descubre los sabores que han enamorado a miles de comensales a lo largo de los años"
+    />
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {dishes.map(dish => (
+        <div class="group cursor-pointer">
+          <div class="relative overflow-hidden rounded-lg shadow-lg mb-4">
+            <img 
+              src={dish.image} 
+              alt={dish.name}
+              class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+            <div class="absolute bottom-4 left-4 text-white">
+              <h3 class="text-xl font-bold">{dish.name}</h3>
+              <p class="text-amber-300 font-semibold">L. {dish.price}</p>
+            </div>
+          </div>
+          <p class="text-gray-600">{dish.description}</p>
+        </div>
+      ))}
+    </div>
+    
+    <div class="text-center mt-12">
+      <Button href="/menu">
+        Ver Menú Completo
+      </Button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+---
+// src/components/ui/Card.astro
+export interface Props {
+  variant?: 'default' | 'hover' | 'shadow';
+  padding?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { 
+  variant = 'default',
+  padding = 'md',
+  class: className = ''
+} = Astro.props;
+
+const baseClasses = 'bg-white rounded-lg overflow-hidden';
+
+const variants = {
+  default: 'shadow-md',
+  hover: 'shadow-lg hover:shadow-xl transition-shadow duration-300',
+  shadow: 'shadow-xl'
+};
+
+const paddings = {
+  sm: 'p-4',
+  md: 'p-6',
+  lg: 'p-8'
+};
+
+const classes = `${baseClasses} ${variants[variant]} ${paddings[padding]} ${className}`;
+---
+
+<div class={classes}>
+  <slot />
+</div>

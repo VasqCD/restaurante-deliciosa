@@ -1,0 +1,22 @@
+---
+// src/components/home/StatsSection.astro
+const stats = [
+  { number: "50,000+", label: "Clientes Satisfechos" },
+  { number: "20+", label: "Años de Experiencia" },
+  { number: "85+", label: "Platos Únicos" },
+  { number: "4.8★", label: "Calificación Promedio" }
+];
+---
+
+<section class="py-20 bg-amber-600">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+      {stats.map(stat => (
+        <div class="transform hover:scale-105 transition-transform duration-300">
+          <div class="text-4xl font-bold mb-2">{stat.number}</div>
+          <div class="text-amber-100">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+---
+// src/components/home/HeroSection.astro
+import Button from '../ui/Button.astro';
+---
+
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 z-10"></div>
+  <div 
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+    style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
+  ></div>
+  
+  <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
+    <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+      Bienvenidos a<br>
+      <span class="text-amber-400">La Deliciosa</span>
+    </h1>
+    <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto leading-relaxed">
+      Descubre sabores auténticos en cada bocado. Más de 20 años creando experiencias gastronómicas inolvidables.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button href="/menu" size="lg">
+        Ver Nuestro Menú
+      </Button>
+      <Button href="/reservas" variant="outline" size="lg">
+        Hacer Reservación
+      </Button>
+    </div>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1s ease-out;
+  }
+</style>

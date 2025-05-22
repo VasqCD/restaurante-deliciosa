@@ -1,0 +1,28 @@
+---
+// src/components/home/CTASection.astro
+import Button from '../ui/Button.astro';
+---
+
+<section class="py-20 bg-gray-900 text-white">
+  <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <h2 class="font-display text-4xl font-bold mb-6">
+      ¿Listo para una Experiencia <span class="text-amber-400">Inolvidable</span>?
+    </h2>
+    <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+      Reserva tu mesa ahora y descubre por qué somos el restaurante favorito de Tegucigalpa
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button href="/reservas" size="lg">
+        Hacer Reservación
+      </Button>
+      <Button 
+        href="tel:+50422345678" 
+        variant="outline" 
+        size="lg"
+        class="border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white"
+      >
+        Llamar Ahora
+      </Button>
+    </div>
+  </div>
+</section>
