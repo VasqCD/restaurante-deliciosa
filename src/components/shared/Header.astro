@@ -1,0 +1,130 @@
+---
+// src/components/shared/Header.astro
+export interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
+
+// Función para determinar si un enlace está activo
+const isActive = (path: string) => {
+  if (path === '/' && currentPath === '/') return true;
+  if (path !== '/' && currentPath.startsWith(path)) return true;
+  return false;
+};
+
+const navItems = [
+  { href: '/', label: 'Inicio' },
+  { href: '/menu', label: 'Menú' },
+  { href: '/nosotros', label: 'Nosotros' },
+  { href: '/galeria', label: 'Galería' },
+  { href: '/contacto', label: 'Contacto' }
+];
+---
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="font-display text-2xl font-bold text-amber-600 hover:text-amber-700 transition-colors">
+          La Deliciosa
+        </a>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-8">
+          {navItems.map(item => (
+            <a 
+              href={item.href} 
+              class={`px-3 py-2 text-sm font-medium transition-colors ${
+                isActive(item.href) 
+                  ? 'text-amber-600 border-b-2 border-amber-600' 
+                  : 'text-gray-900 hover:text-amber-600'
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
+          <a 
+            href="/reservas" 
+            class={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              currentPath === '/reservas'
+                ? 'bg-amber-700 text-white'
+                : 'bg-amber-600 text-white hover:bg-amber-700'
+            }`}
+          >
+            Reservar
+          </a>
+        </div>
+      </div>
+      
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button 
+          id="mobile-menu-button" 
+          class="text-gray-900 hover:text-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 p-2 rounded-md"
+          aria-label="Abrir menú móvil"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+        {navItems.map(item => (
+          <a 
+            href={item.href} 
+            class={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
+              isActive(item.href)
+                ? 'text-amber-600 bg-amber-50'
+                : 'text-gray-900 hover:text-amber-600 hover:bg-amber-50'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
+        <a 
+          href="/reservas" 
+          class={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
+            currentPath === '/reservas'
+              ? 'bg-amber-700 text-white'
+              : 'bg-amber-600 text-white hover:bg-amber-700'
+          }`}
+        >
+          Reservar
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+      
+      // Update aria-expanded for accessibility
+      const isExpanded = !mobileMenu?.classList.contains('hidden');
+      mobileMenuButton?.setAttribute('aria-expanded', isExpanded.toString());
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as Element;
+      if (!mobileMenuButton?.contains(target) && !mobileMenu?.contains(target)) {
+        mobileMenu?.classList.add('hidden');
+        mobileMenuButton?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>

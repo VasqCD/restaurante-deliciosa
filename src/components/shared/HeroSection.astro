@@ -1,0 +1,166 @@
+---
+// src/components/shared/HeroSection.astro
+export interface Props {
+  title: string;
+  subtitle?: string;
+  backgroundImage?: string;
+  backgroundColor?: string;
+  variant?: 'default' | 'gradient' | 'image';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  showScrollIndicator?: boolean;
+  overlay?: boolean;
+  textAlign?: 'left' | 'center' | 'right';
+  titleHighlight?: string; // Texto a resaltar en color diferente
+}
+
+const {
+  title,
+  subtitle,
+  backgroundImage,
+  backgroundColor = 'bg-gradient-to-r from-amber-600 to-amber-800',
+  variant = 'default',
+  size = 'lg',
+  showScrollIndicator = false,
+  overlay = true,
+  textAlign = 'center',
+  titleHighlight
+} = Astro.props;
+
+// Clases de tamaño
+const sizeClasses = {
+  sm: 'py-12',
+  md: 'py-16',
+  lg: 'py-20',
+  xl: 'h-screen flex items-center justify-center'
+};
+
+// Clases de alineación
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right'
+};
+
+// Función para procesar el título con highlight
+const getFormattedTitle = () => {
+  if (!titleHighlight) return title;
+  return title.replace(titleHighlight, `<span class="text-amber-400">${titleHighlight}</span>`);
+};
+
+// Clases dinámicas según variante
+let sectionClasses = `relative ${sizeClasses[size]} overflow-hidden`;
+let backgroundClasses = '';
+let titleClasses = 'font-display font-bold text-white mb-6';
+let subtitleClasses = 'text-gray-200 max-w-3xl leading-relaxed';
+
+// Configurar clases según variante
+switch (variant) {
+  case 'gradient':
+    sectionClasses += ` ${backgroundColor}`;
+    break;
+  case 'image':
+    if (backgroundImage) {
+      backgroundClasses = `absolute inset-0 bg-cover bg-center bg-no-repeat`;
+    }
+    break;
+  default:
+    sectionClasses += ` ${backgroundColor}`;
+}
+
+// Tamaños de texto según size
+const titleSizes = {
+  sm: 'text-3xl md:text-4xl',
+  md: 'text-4xl md:text-5xl',
+  lg: 'text-4xl md:text-5xl',
+  xl: 'text-5xl md:text-7xl'
+};
+
+const subtitleSizes = {
+  sm: 'text-base md:text-lg',
+  md: 'text-lg md:text-xl',
+  lg: 'text-lg md:text-xl',
+  xl: 'text-xl md:text-2xl'
+};
+
+titleClasses += ` ${titleSizes[size]}`;
+subtitleClasses += ` ${subtitleSizes[size]}`;
+
+// Clases de alineación
+if (textAlign === 'center') {
+  subtitleClasses += ' mx-auto';
+}
+---
+
+<section class={sectionClasses}>
+  <!-- Background overlay para variante image -->
+  {overlay && variant === 'image' && (
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 z-10"></div>
+  )}
+  
+  <!-- Background image -->
+  {variant === 'image' && backgroundImage && (
+    <div 
+      class={backgroundClasses}
+      style={`background-image: url('${backgroundImage}')`}
+    ></div>
+  )}
+  
+  <!-- Content -->
+  <div class={`relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${alignClasses[textAlign]}`}>
+    {size === 'xl' ? (
+      <div class="text-white max-w-4xl mx-auto">
+        <h1 
+          class={`${titleClasses} animate-fade-in`}
+          set:html={getFormattedTitle()}
+        />
+        {subtitle && (
+          <p class={`${subtitleClasses} mb-8`}>
+            {subtitle}
+          </p>
+        )}
+        <slot name="actions" />
+      </div>
+    ) : (
+      <>
+        <h1 
+          class={titleClasses}
+          set:html={getFormattedTitle()}
+        />
+        {subtitle && (
+          <p class={subtitleClasses}>
+            {subtitle}
+          </p>
+        )}
+        <slot name="actions" />
+      </>
+    )}
+  </div>
+  
+  <!-- Scroll indicator -->
+  {showScrollIndicator && (
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  )}
+</section>
+
+{size === 'xl' && (
+  <style>
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-fade-in {
+      animation: fade-in 1s ease-out;
+    }
+  </style>
+)}

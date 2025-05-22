@@ -1,6 +1,8 @@
 ---
-// src/pages/galeria.astro
+// src/pages/galeria.astro - Refactorizada
 import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/shared/HeroSection.astro';
+import Button from '../components/ui/Button.astro';
 
 const galeria = [
   {
@@ -61,17 +63,14 @@ const categorias = [
   keywords="galería restaurante, fotos comida hondureña, ambiente restaurante, platos típicos, fotografías"
 >
   <!-- Hero Section -->
-  <section class="relative py-16 bg-gradient-to-r from-amber-600 to-amber-800">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">
-        Nuestra Galería
-      </h1>
-      <p class="text-lg md:text-xl text-amber-100 max-w-2xl mx-auto">
-        Descubre a través de imágenes la experiencia gastronómica que te espera en La Deliciosa
-      </p>
-    </div>
-  </section>
+  <HeroSection
+    title="Nuestra Galería"
+    titleHighlight="Galería"
+    subtitle="Descubre a través de imágenes la experiencia gastronómica que te espera en La Deliciosa"
+    variant="gradient"
+    backgroundColor="bg-gradient-to-r from-amber-600 to-amber-800"
+    size="md"
+  />
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     
@@ -150,12 +149,12 @@ const categorias = [
         Ven y vive la experiencia completa en nuestro restaurante
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/reservas" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+        <Button href="/reservas" size="lg">
           Reservar Mesa
-        </a>
-        <a href="/menu" class="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+        </Button>
+        <Button href="/menu" variant="outline" size="lg">
           Ver Menú
-        </a>
+        </Button>
       </div>
     </div>
   </section>

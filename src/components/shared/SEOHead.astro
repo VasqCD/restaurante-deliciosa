@@ -1,0 +1,123 @@
+---
+// src/components/shared/SEOHead.astro
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
+  canonicalUrl?: string;
+  noindex?: boolean;
+  structuredData?: any;
+}
+
+const {
+  title,
+  description,
+  keywords = "restaurante, comida, gastronomía, platos",
+  ogImage = "/og-image.jpg",
+  ogType = "website",
+  twitterCard = "summary_large_image",
+  canonicalUrl,
+  noindex = false,
+  structuredData
+} = Astro.props;
+
+// Generar URL canónica
+const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site);
+
+// Datos estructurados por defecto del restaurante
+const defaultStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Restaurante La Deliciosa",
+  "description": "Auténtica cocina tradicional con un toque moderno en el corazón de la ciudad",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Principal 123",
+    "addressLocality": "Tegucigalpa",
+    "addressRegion": "Francisco Morazán",
+    "postalCode": "11101",
+    "addressCountry": "HN"
+  },
+  "telephone": "+504 2234-5678",
+  "url": "https://restaurante-deliciosa.com",
+  "openingHours": [
+    "Mo-Su 11:00-22:00"
+  ],
+  "servesCuisine": "Hondureña, Internacional",
+  "priceRange": "$$",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "250"
+  }
+};
+
+// Combinar datos estructurados
+const finalStructuredData = structuredData ? 
+  { ...defaultStructuredData, ...structuredData } : 
+  defaultStructuredData;
+---
+
+<!-- SEO Meta Tags -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+{!noindex && <link rel="canonical" href={canonical} />}
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(ogImage, Astro.site)} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content={ogType} />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content="Restaurante La Deliciosa" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+<!-- Additional SEO Meta Tags -->
+<meta name="author" content="Restaurante La Deliciosa" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+
+<!-- DNS Prefetch -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//images.unsplash.com">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(finalStructuredData)} />
+
+<!-- Fonts -->
+<link 
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" 
+  rel="stylesheet"
+  media="print" 
+  onload="this.media='all'"
+/>
+
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+</style>
