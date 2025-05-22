@@ -1,0 +1,300 @@
+---
+// src/pages/nosotros.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Nosotros - Restaurante La Deliciosa | Historia y Tradición Familiar"
+  description="Conoce la historia de Restaurante La Deliciosa, fundado en 2003 por la familia Rodríguez. Más de 20 años de tradición culinaria hondureña y pasión por la gastronomía."
+  keywords="historia restaurante, familia Rodríguez, tradición culinaria, cocina hondureña, experiencia gastronómica"
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gradient-to-r from-amber-600 to-amber-800">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <h1 class="font-display text-5xl md:text-6xl font-bold mb-6">
+        Nuestra Historia
+      </h1>
+      <p class="text-xl md:text-2xl text-amber-100 max-w-3xl mx-auto leading-relaxed">
+        Más de dos décadas compartiendo la pasión por la auténtica cocina hondureña
+      </p>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="font-display text-4xl font-bold text-gray-900 mb-6">
+            Todo Comenzó con un <span class="text-amber-600">Sueño</span>
+          </h2>
+          <div class="prose prose-lg text-gray-700 space-y-4">
+            <p>
+              En el año 2003, la familia Rodríguez decidió convertir su pasión por la cocina tradicional hondureña 
+              en algo más grande. Con una receta de baleadas que había pasado de generación en generación y el 
+              sueño de compartir los auténticos sabores de Honduras, abrieron las puertas de lo que se convertiría 
+              en <strong>Restaurante La Deliciosa</strong>.
+            </p>
+            <p>
+              Lo que comenzó como un pequeño local en el corazón de Tegucigalpa, con apenas cuatro mesas y un 
+              menú sencillo, se ha transformado en uno de los restaurantes más queridos de la ciudad. Nuestra 
+              filosofía siempre ha sido clara: <em>servir comida preparada con amor, usando ingredientes frescos 
+              y manteniendo vivas las tradiciones culinarias de nuestra tierra</em>.
+            </p>
+            <p>
+              Cada plato que sale de nuestra cocina lleva consigo no solo el sabor auténtico de Honduras, 
+              sino también el cariño y la dedicación de una familia que ha hecho de la gastronomía su forma 
+              de vida y su manera de conectar con la comunidad.
+            </p>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <img 
+            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+            alt="Familia Rodríguez fundadores del restaurante"
+            class="rounded-lg shadow-xl w-full"
+          />
+          <div class="absolute -bottom-6 -left-6 bg-amber-600 text-white p-6 rounded-lg shadow-xl">
+            <div class="text-center">
+              <div class="text-3xl font-bold">2003</div>
+              <div class="text-sm">Año de Fundación</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl font-bold text-gray-900 mb-4">
+          Nuestros <span class="text-amber-600">Valores</span>
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Los principios que guían cada día nuestro trabajo y nos han mantenido fieles a nuestra misión
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-gray-900 mb-4">Pasión</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Cada plato es preparado con amor y dedicación, manteniendo viva la tradición culinaria que nos define desde nuestros inicios.
+          </p>
+        </div>
+        
+        <div class="text-center bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+            </svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-gray-900 mb-4">Calidad</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Seleccionamos cuidadosamente cada ingrediente, trabajando con proveedores locales para garantizar frescura y sabor auténtico.
+          </p>
+        </div>
+        
+        <div class="text-center bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-gray-900 mb-4">Comunidad</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Más que un restaurante, somos parte de la familia de Tegucigalpa, creando espacios donde las personas se conectan y comparten momentos especiales.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl font-bold text-gray-900 mb-4">
+          Nuestro <span class="text-amber-600">Equipo</span>
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Conoce a las personas que hacen posible la magia culinaria de La Deliciosa cada día
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="text-center group">
+          <div class="relative mb-6">
+            <img 
+              src="https://images.unsplash.com/photo-1566492031773-4f4e44671d66?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+              alt="Don Roberto Rodríguez"
+              class="w-48 h-48 rounded-full mx-auto object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+            />
+            <div class="absolute inset-0 rounded-full bg-amber-600/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+          <h3 class="font-display text-xl font-bold text-gray-900 mb-2">Don Roberto Rodríguez</h3>
+          <p class="text-amber-600 font-semibold mb-3">Fundador y Chef Principal</p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Con más de 30 años de experiencia culinaria, Don Roberto es el alma de La Deliciosa. 
+            Sus recetas familiares son el corazón de nuestro menú.
+          </p>
+        </div>
+        
+        <div class="text-center group">
+          <div class="relative mb-6">
+            <img 
+              src="https://images.unsplash.com/photo-1594736797933-d0e501ba2fe6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+              alt="Doña María Rodríguez"
+              class="w-48 h-48 rounded-full mx-auto object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+            />
+            <div class="absolute inset-0 rounded-full bg-amber-600/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+          <h3 class="font-display text-xl font-bold text-gray-900 mb-2">Doña María Rodríguez</h3>
+          <p class="text-amber-600 font-semibold mb-3">Co-fundadora y Gerente General</p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            La mano derecha de Don Roberto, Doña María supervisa las operaciones diarias 
+            y mantiene el ambiente familiar que nos caracteriza.
+          </p>
+        </div>
+        
+        <div class="text-center group">
+          <div class="relative mb-6">
+            <img 
+              src="https://images.unsplash.com/photo-1607631568010-a87245c0daf8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+              alt="Carlos Rodríguez"
+              class="w-48 h-48 rounded-full mx-auto object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+            />
+            <div class="absolute inset-0 rounded-full bg-amber-600/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+          <h3 class="font-display text-xl font-bold text-gray-900 mb-2">Carlos Rodríguez</h3>
+          <p class="text-amber-600 font-semibold mb-3">Sous Chef</p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Hijo de los fundadores, Carlos representa la nueva generación que mantiene 
+            viva la tradición mientras incorpora técnicas culinarias modernas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl font-bold text-gray-900 mb-4">
+          Nuestro <span class="text-amber-600">Crecimiento</span>
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Un viaje de más de 20 años construyendo momentos memorables alrededor de la mesa
+        </p>
+      </div>
+      
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-amber-200"></div>
+        
+        <div class="space-y-12">
+          <!-- 2003 -->
+          <div class="relative flex items-center">
+            <div class="flex-1 text-right pr-8">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="font-display text-xl font-bold text-gray-900 mb-2">2003 - Los Inicios</h3>
+                <p class="text-gray-600">
+                  Apertura del primer local con 4 mesas y un menú básico de baleadas y comida tradicional hondureña.
+                </p>
+              </div>
+            </div>
+            <div class="w-8 h-8 bg-amber-600 rounded-full border-4 border-white shadow-lg relative z-10"></div>
+            <div class="flex-1 pl-8"></div>
+          </div>
+          
+          <!-- 2008 -->
+          <div class="relative flex items-center">
+            <div class="flex-1 pr-8"></div>
+            <div class="w-8 h-8 bg-amber-600 rounded-full border-4 border-white shadow-lg relative z-10"></div>
+            <div class="flex-1 text-left pl-8">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="font-display text-xl font-bold text-gray-900 mb-2">2008 - Primera Expansión</h3>
+                <p class="text-gray-600">
+                  Ampliación del restaurante y contratación de nuestro primer equipo de cocina profesional.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 2015 -->
+          <div class="relative flex items-center">
+            <div class="flex-1 text-right pr-8">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="font-display text-xl font-bold text-gray-900 mb-2">2015 - Reconocimiento</h3>
+                <p class="text-gray-600">
+                  Primer premio como "Mejor Restaurante de Comida Tradicional" otorgado por la Cámara de Turismo.
+                </p>
+              </div>
+            </div>
+            <div class="w-8 h-8 bg-amber-600 rounded-full border-4 border-white shadow-lg relative z-10"></div>
+            <div class="flex-1 pl-8"></div>
+          </div>
+          
+          <!-- 2020 -->
+          <div class="relative flex items-center">
+            <div class="flex-1 pr-8"></div>
+            <div class="w-8 h-8 bg-amber-600 rounded-full border-4 border-white shadow-lg relative z-10"></div>
+            <div class="flex-1 text-left pl-8">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="font-display text-xl font-bold text-gray-900 mb-2">2020 - Adaptación Digital</h3>
+                <p class="text-gray-600">
+                  Lanzamiento de servicio a domicilio y plataforma digital para mantener la conexión con nuestros clientes.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 2024 -->
+          <div class="relative flex items-center">
+            <div class="flex-1 text-right pr-8">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="font-display text-xl font-bold text-gray-900 mb-2">2024 - Nueva Era</h3>
+                <p class="text-gray-600">
+                  Renovación completa del restaurante y lanzamiento de nuestro nuevo sitio web para seguir creciendo juntos.
+                </p>
+              </div>
+            </div>
+            <div class="w-8 h-8 bg-amber-600 rounded-full border-4 border-white shadow-lg relative z-10"></div>
+            <div class="flex-1 pl-8"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-amber-600">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-4xl font-bold text-white mb-6">
+        Forma Parte de Nuestra Historia
+      </h2>
+      <p class="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
+        Cada cliente que entra por nuestras puertas se convierte en parte de la gran familia de La Deliciosa. 
+        Te invitamos a crear nuevos recuerdos con nosotros.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/reservas" class="bg-white text-amber-600 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
+          Reservar Mesa
+        </a>
+        <a href="/menu" class="border-2 border-white text-white hover:bg-white hover:text-amber-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
+          Ver Nuestro Menú
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

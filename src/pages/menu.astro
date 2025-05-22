@@ -1,0 +1,437 @@
+---
+// src/pages/menu.astro
+import Layout from '../layouts/Layout.astro';
+
+// Datos del menú organizados por categorías
+const menuData = {
+  entradas: [
+    {
+      name: "Nachos La Deliciosa",
+      description: "Nachos caseros con queso fundido, frijoles, pico de gallo, guacamole y crema",
+      price: 180,
+      image: "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      popular: true
+    },
+    {
+      name: "Alitas BBQ",
+      description: "12 alitas de pollo bañadas en salsa BBQ casera, acompañadas de vegetales",
+      price: 220,
+      image: "https://images.unsplash.com/photo-1608039755401-742074f0548d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Quesadillas de Pollo",
+      description: "Tortillas de harina rellenas de pollo desmenuzado y queso, con guacamole",
+      price: 160,
+      image: "https://images.unsplash.com/photo-1599974579688-8dbdd550c69f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    }
+  ],
+  platos_tradicionales: [
+    {
+      name: "Baleada Especial",
+      description: "Tortilla de harina casera con frijoles, queso, crema, aguacate y huevo",
+      price: 95,
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      popular: true
+    },
+    {
+      name: "Plato Típico Hondureño",
+      description: "Carne asada, tajadas, frijoles, arroz, huevo frito y ensalada",
+      price: 320,
+      image: "https://images.unsplash.com/photo-1546833999-b9f2b7aa6ca4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      popular: true
+    },
+    {
+      name: "Sopa de Mondongo",
+      description: "Tradicional sopa hondureña con mondongo, vegetales y especias",
+      price: 140,
+      image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Pupusas Salvadoreñas",
+      description: "Masa de maíz rellena de queso, frijoles o chicharrón, con curtido",
+      price: 75,
+      image: "https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    }
+  ],
+  carnes_aves: [
+    {
+      name: "Churrasco Argentino",
+      description: "Corte premium a la parrilla con chimichurri, papas fritas y ensalada",
+      price: 450,
+      image: "https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      popular: true
+    },
+    {
+      name: "Pollo a la Plancha",
+      description: "Pechuga marinada con hierbas, vegetales salteados y arroz con coco",
+      price: 285,
+      image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Costillas BBQ",
+      description: "Costillas de cerdo cocidas lentamente con salsa BBQ secreta",
+      price: 380,
+      image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Pescado a la Plancha",
+      description: "Filete de pescado fresco con vegetales al vapor y arroz blanco",
+      price: 340,
+      image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    }
+  ],
+  bebidas: [
+    {
+      name: "Horchata Casera",
+      description: "Bebida tradicional de arroz con canela y vainilla",
+      price: 45,
+      image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Agua de Jamaica",
+      description: "Refrescante agua de flor de Jamaica natural",
+      price: 35,
+      image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Café Hondureño",
+      description: "Café premium de las montañas de Honduras",
+      price: 40,
+      image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Jugos Naturales",
+      description: "Naranja, piña, mango, tamarindo, maracuyá",
+      price: 50,
+      image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    }
+  ],
+  postres: [
+    {
+      name: "Tres Leches",
+      description: "Clásico postre hondureño bañado en tres tipos de leche",
+      price: 85,
+      image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      popular: true
+    },
+    {
+      name: "Flan de Coco",
+      description: "Cremoso flan casero con sabor a coco tropical",
+      price: 75,
+      image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Helado Artesanal",
+      description: "Helado hecho en casa, sabores: vainilla, chocolate, fresa",
+      price: 60,
+      image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    }
+  ]
+};
+
+const categories = [
+  { id: 'entradas', name: 'Entradas', icon: '🥗' },
+  { id: 'platos_tradicionales', name: 'Platos Tradicionales', icon: '🍽️' },
+  { id: 'carnes_aves', name: 'Carnes y Aves', icon: '🥩' },
+  { id: 'bebidas', name: 'Bebidas', icon: '🍹' },
+  { id: 'postres', name: 'Postres', icon: '🍰' }
+];
+---
+
+<Layout 
+  title="Menú - Restaurante La Deliciosa | Auténtica Cocina Hondureña"
+  description="Descubre nuestro delicioso menú con platos tradicionales hondureños, carnes premium, entradas frescas y postres caseros. Ingredientes frescos y sabores auténticos."
+  keywords="menú restaurante, comida hondureña, baleadas, plato típico, carnes a la parrilla, postres caseros"
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gradient-to-r from-amber-600 to-amber-700">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <h1 class="font-display text-5xl md:text-6xl font-bold mb-6">
+        Nuestro Menú
+      </h1>
+      <p class="text-xl md:text-2xl text-amber-100 max-w-3xl mx-auto">
+        Descubre los sabores auténticos de Honduras y deléitate con nuestra selección de platos tradicionales e internacionales
+      </p>
+    </div>
+  </section>
+
+  <!-- Category Navigation -->
+  <section class="sticky top-16 z-40 bg-white shadow-md border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex overflow-x-auto py-4 space-x-8 scrollbar-hide">
+        {categories.map(category => (
+          <a 
+            href={`#${category.id}`} 
+            class="flex items-center space-x-2 text-gray-700 hover:text-amber-600 font-medium whitespace-nowrap transition-colors py-2 px-4 rounded-lg hover:bg-amber-50"
+          >
+            <span class="text-xl">{category.icon}</span>
+            <span>{category.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Sections -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Entradas -->
+    <section id="entradas" class="mb-16">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-4xl font-bold text-gray-900 mb-4">
+          🥗 Entradas
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Comienza tu experiencia gastronómica con nuestras deliciosas entradas, perfectas para compartir
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {menuData.entradas.map(item => (
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="relative">
+              <img 
+                src={item.image} 
+                alt={item.name}
+                class="w-full h-48 object-cover"
+              />
+              {item.popular && (
+                <div class="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  Popular
+                </div>
+              )}
+              <div class="absolute bottom-4 right-4 bg-white/90 text-amber-600 px-3 py-1 rounded-full font-bold">
+                L. {item.price}
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold text-gray-900 mb-2">{item.name}</h3>
+              <p class="text-gray-600 leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Platos Tradicionales -->
+    <section id="platos_tradicionales" class="mb-16">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-4xl font-bold text-gray-900 mb-4">
+          🍽️ Platos Tradicionales
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Los sabores auténticos de Honduras en cada bocado, preparados con recetas familiares tradicionales
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {menuData.platos_tradicionales.map(item => (
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="relative">
+              <img 
+                src={item.image} 
+                alt={item.name}
+                class="w-full h-48 object-cover"
+              />
+              {item.popular && (
+                <div class="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  Popular
+                </div>
+              )}
+              <div class="absolute bottom-4 right-4 bg-white/90 text-amber-600 px-3 py-1 rounded-full font-bold">
+                L. {item.price}
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold text-gray-900 mb-2">{item.name}</h3>
+              <p class="text-gray-600 leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Carnes y Aves -->
+    <section id="carnes_aves" class="mb-16">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-4xl font-bold text-gray-900 mb-4">
+          🥩 Carnes y Aves
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Cortes premium y aves frescas, cocinados a la perfección con técnicas tradicionales y modernas
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {menuData.carnes_aves.map(item => (
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="relative">
+              <img 
+                src={item.image} 
+                alt={item.name}
+                class="w-full h-48 object-cover"
+              />
+              {item.popular && (
+                <div class="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  Popular
+                </div>
+              )}
+              <div class="absolute bottom-4 right-4 bg-white/90 text-amber-600 px-3 py-1 rounded-full font-bold">
+                L. {item.price}
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold text-gray-900 mb-2">{item.name}</h3>
+              <p class="text-gray-600 leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Bebidas -->
+    <section id="bebidas" class="mb-16">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-4xl font-bold text-gray-900 mb-4">
+          🍹 Bebidas
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Refréscate con nuestras bebidas tradicionales y naturales, preparadas diariamente con ingredientes frescos
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {menuData.bebidas.map(item => (
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="relative">
+              <img 
+                src={item.image} 
+                alt={item.name}
+                class="w-full h-40 object-cover"
+              />
+              <div class="absolute bottom-4 right-4 bg-white/90 text-amber-600 px-3 py-1 rounded-full font-bold">
+                L. {item.price}
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-display text-lg font-bold text-gray-900 mb-2">{item.name}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Postres -->
+    <section id="postres" class="mb-16">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-4xl font-bold text-gray-900 mb-4">
+          🍰 Postres
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Termina tu comida con el toque dulce perfecto. Postres caseros preparados con amor y tradición familiar
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {menuData.postres.map(item => (
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="relative">
+              <img 
+                src={item.image} 
+                alt={item.name}
+                class="w-full h-48 object-cover"
+              />
+              {item.popular && (
+                <div class="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  Popular
+                </div>
+              )}
+              <div class="absolute bottom-4 right-4 bg-white/90 text-amber-600 px-3 py-1 rounded-full font-bold">
+                L. {item.price}
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold text-gray-900 mb-2">{item.name}</h3>
+              <p class="text-gray-600 leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl font-bold text-gray-900 mb-4">
+        ¿Te Gusta lo que Ves?
+      </h2>
+      <p class="text-lg text-gray-600 mb-8">
+        Reserva tu mesa ahora y disfruta de una experiencia gastronómica inolvidable
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/reservas" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+          Hacer Reservación
+        </a>
+        <a href="/contacto" class="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+          Contactar
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Scroll offset for sticky navigation */
+  section[id] {
+    scroll-margin-top: 120px;
+  }
+</style>
+
+<script>
+  // Highlight active category in navigation
+  const observerOptions = {
+    root: null,
+    rootMargin: '-100px 0px -50% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Remove active class from all links
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+          link.classList.remove('text-amber-600', 'bg-amber-50');
+          link.classList.add('text-gray-700');
+        });
+        
+        // Add active class to current link
+        const activeLink = document.querySelector(`a[href="#${entry.target.id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('text-amber-600', 'bg-amber-50');
+          activeLink.classList.remove('text-gray-700');
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections
+  document.querySelectorAll('section[id]').forEach(section => {
+    observer.observe(section);
+  });
+</script>
